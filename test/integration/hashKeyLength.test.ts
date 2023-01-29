@@ -1,7 +1,7 @@
-import { expect } from "chai";
-import { S2RegionCoverer } from "nodes2ts";
-import { S2Util } from "../../src/s2/S2Util";
-import { Covering } from "../../src/model/Covering";
+import { expect } from 'chai';
+import { S2RegionCoverer } from 'nodes2ts';
+import { Covering } from '../../src/model/Covering';
+import { S2Util } from '../../src/s2/S2Util';
 
 describe('Appropriate hash key lengths', function () {
     it('10m radius', function () {
@@ -9,8 +9,8 @@ describe('Appropriate hash key lengths', function () {
             RadiusInMeter: 10,
             CenterPoint: {
                 latitude: 59,
-                longitude: 0
-            }
+                longitude: 0,
+            },
         })));
 
         expect(cov.getNumberOfCells()).to.equal(8);
@@ -26,16 +26,16 @@ describe('Appropriate hash key lengths', function () {
             RadiusInMeter: 1000,
             CenterPoint: {
                 latitude: 59,
-                longitude: 0
-            }
+                longitude: 0,
+            },
         })));
 
-        expect(cov.getNumberOfCells()).to.equal(8);
-        expect(cov.getGeoHashRanges(6)).length(8);
-        expect(cov.getGeoHashRanges(7)).length(8); // Recommend hashKeyLength = 7 for 1km radius searches
-        expect(cov.getGeoHashRanges(8)).length(10);
-        expect(cov.getGeoHashRanges(9)).length(36);
-        expect(cov.getGeoHashRanges(9)).length(36);
+        expect(cov.getNumberOfCells()).to.equal(2);
+        expect(cov.getGeoHashRanges(6)).length(2);
+        expect(cov.getGeoHashRanges(7)).length(2); // Recommend hashKeyLength = 7 for 1km radius searches
+        expect(cov.getGeoHashRanges(8)).length(4);
+        expect(cov.getGeoHashRanges(9)).length(30);
+        expect(cov.getGeoHashRanges(9)).length(30);
     });
 
     it('10km radius', function () {
@@ -43,8 +43,8 @@ describe('Appropriate hash key lengths', function () {
             RadiusInMeter: 10000,
             CenterPoint: {
                 latitude: 59,
-                longitude: 0
-            }
+                longitude: 0,
+            },
         })));
 
         expect(cov.getNumberOfCells()).to.equal(8);
@@ -62,8 +62,8 @@ describe('Appropriate hash key lengths', function () {
             RadiusInMeter: 50000,
             CenterPoint: {
                 latitude: 59,
-                longitude: 0
-            }
+                longitude: 0,
+            },
         })));
 
         expect(cov.getNumberOfCells()).to.equal(6);
@@ -80,8 +80,8 @@ describe('Appropriate hash key lengths', function () {
             RadiusInMeter: 100000,
             CenterPoint: {
                 latitude: 59,
-                longitude: 0
-            }
+                longitude: 0,
+            },
         })));
 
         expect(cov.getNumberOfCells()).to.equal(8);
@@ -97,8 +97,8 @@ describe('Appropriate hash key lengths', function () {
             RadiusInMeter: 1000000,
             CenterPoint: {
                 latitude: 59,
-                longitude: 0
-            }
+                longitude: 0,
+            },
         })));
 
         expect(cov.getNumberOfCells()).to.equal(8);

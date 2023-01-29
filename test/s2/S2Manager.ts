@@ -1,12 +1,12 @@
-import { S2Manager } from "../../src/s2/S2Manager";
-import { expect } from "chai";
-import * as Long from "long";
+import { expect } from 'chai';
+import * as Long from 'long';
+import { S2Manager } from '../../src/s2/S2Manager';
 
 describe('S2Manager', () => {
     it('generateGeoHash', () => {
         expect(S2Manager.generateGeohash({
             latitude: 52.1,
-            longitude: 2
+            longitude: 2,
         }).toString(10)).to.equal('5177531549489041509');
     });
 
