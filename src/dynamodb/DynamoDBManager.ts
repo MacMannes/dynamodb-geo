@@ -13,6 +13,7 @@
  * permissions and limitations under the License.
  */
 
+import * as console from 'console';
 import { AWSError, DynamoDB, Request } from 'aws-sdk';
 import { PutItemInput, PutRequest } from 'aws-sdk/clients/dynamodb';
 import Long from 'long';
@@ -30,7 +31,6 @@ import {
     UpdatePointInput,
     UpdatePointOutput,
 } from '../types';
-import * as console from "console";
 
 export class DynamoDBManager {
     private config: GeoDataManagerConfiguration;
@@ -64,8 +64,6 @@ export class DynamoDBManager {
 
             const minRange: DynamoDB.AttributeValue = { N: range.rangeMin.toNumber().toString() };
             const maxRange: DynamoDB.AttributeValue = { N: range.rangeMax.toNumber().toString() };
-
-            console.log(` minRange: ${minRange}, maxRange:${maxRange}`);
 
             keyConditions[this.config.geohashAttributeName] = {
                 ComparisonOperator: 'BETWEEN',
