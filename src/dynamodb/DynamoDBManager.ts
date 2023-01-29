@@ -30,6 +30,7 @@ import {
     UpdatePointInput,
     UpdatePointOutput,
 } from '../types';
+import * as console from "console";
 
 export class DynamoDBManager {
     private config: GeoDataManagerConfiguration;
@@ -58,11 +59,13 @@ export class DynamoDBManager {
 
             keyConditions[this.config.hashKeyAttributeName] = {
                 ComparisonOperator: 'EQ',
-                AttributeValueList: [{ N: hashKey.toString(10) }],
+                AttributeValueList: [{ N: hashKey.toNumber().toString() }],
             };
 
-            const minRange: DynamoDB.AttributeValue = { N: range.rangeMin.toString(10) };
-            const maxRange: DynamoDB.AttributeValue = { N: range.rangeMax.toString(10) };
+            const minRange: DynamoDB.AttributeValue = { N: range.rangeMin.toNumber().toString() };
+            const maxRange: DynamoDB.AttributeValue = { N: range.rangeMax.toNumber().toString() };
+
+            console.log(` minRange: ${minRange}, maxRange:${maxRange}`);
 
             keyConditions[this.config.geohashAttributeName] = {
                 ComparisonOperator: 'BETWEEN',
